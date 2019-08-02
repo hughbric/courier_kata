@@ -37,5 +37,11 @@ describe Order do
     it 'throws an error when a string is input' do
       expect{ subject.add('hello') }.to raise_error(ArgumentError, 'Incorrect input type')
     end
+
+    it 'has speedy delivery' do
+      subject.add(120)
+      subject.speedy_shipping = true
+      expect(subject.print_order).to eq({ items: [{ item: 120, package_type: 'XL', individual_cost: '$25' }], speedy_shipping: '$25', total_cost: '$50' })
+    end
   end
 end

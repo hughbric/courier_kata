@@ -1,4 +1,6 @@
 class Order
+  attr_writer :speedy_shipping
+
   def initialize
     @order = { items: [], total_cost: '$0' }
   end
@@ -26,6 +28,12 @@ class Order
       package[:individual_cost] = "$#{price}"
     end
 
-    @order[:total_cost] = "$#{total}"
+    if @speedy_shipping == true
+      double_total = total * 2
+      @order[:speedy_shipping] = "$#{total}"
+      @order[:total_cost] = "$#{double_total}"
+    else
+      @order[:total_cost] = "$#{total}"
+    end
   end
 end
