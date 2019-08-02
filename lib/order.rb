@@ -1,37 +1,29 @@
 class Order
   def initialize
-    @package = {}
     @order = { items: [], total_cost: '$0' }
   end
 
   def add(package_dimension)
-    @package[:item] = package_dimension
-    calculate_package_type(package_dimension)
-    set_unit_price(@package[:package_type])
-    calculate_total_cost
-
-    @order[:items] << @package
+    package = Package.new(package_dimension)
+    @order[:items] << package.details
   end
 
   def print_order
+    calculate_total_cost
     @order
   end
 
   private
 
-  def calculate_package_type(package_dimension)
-    if package_dimension < 10
-      @package[:package_type] = 'Small'
-    end
-  end
-
-  def set_unit_price(package_type)
-    if package_type == 'Small'
-      @package[:individual_cost] = '$3'
-    end
-  end
-
   def calculate_total_cost
-    @order[:total_cost] = @package[:individual_cost]
+    total = 0
+    @order[:items].each do |package|
+      price = package[:individual_cost]
+      price[0] = '' #removes '$'
+      total += price.to_i
+      package[:individual_cost] = "$#{price}"
+    end
+
+    @order[:total_cost] = "$#{total}"
   end
 end
