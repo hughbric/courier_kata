@@ -24,7 +24,7 @@ A code library that calculates the cost of sending an order of parcels.
 
 ## Improvements and Additions
 
-- I would of liked to gotten further in the kata than I did. I encountered a difficulty with my second test. The array of the order was not behaving in a cumulative manner. Whenever a package was added with the shovel operator it would overwrite the rest of the hash items. I probably should have separated package into its own class sooner - however, I only want to do that if it is absolutely necessary, I spent too much time looking for a simpler solution to pass the test.
+- I would of liked to have gotten further in the kata than I did. I encountered a difficulty with my second test. The array of the order was not behaving in a cumulative manner. Whenever a package was added with the shovel operator it would overwrite the rest of the hash items. I probably should have separated package into its own class sooner - however, I only want to do that if it is absolutely necessary, I spent too much time looking for a simpler solution to pass the test.
 - Calculate total cost is in need of refactoring. I think `price[0] = ''` should not remove the '$' from `package[:individual_cost]` - but it does. I need to reflect on this kind of identity relationship.
 - I would also probably refactor the 'magic numbers' in the package class and assign them to constants.
 - The tight dependency between the two classes should be avoided and refactored out by something like dependency injection.
