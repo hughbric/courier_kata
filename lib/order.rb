@@ -1,3 +1,5 @@
+require_relative 'package'
+
 class Order
   attr_writer :speedy_shipping
 
