@@ -18,6 +18,8 @@ class Package
       @package[:package_type] = 'Small'
     elsif package_dimension < 50
       @package[:package_type] = 'Medium'
+    elsif package_dimension < 100
+      @package[:package_type] = 'Large'
     end
   end
 
@@ -27,6 +29,8 @@ class Package
       @package[:individual_cost] = '$3'
     when 'Medium'
       @package[:individual_cost] = '$8'
+    when 'Large'
+      @package[:individual_cost] = '$15'
     end
   end
 end
