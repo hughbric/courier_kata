@@ -7,7 +7,7 @@ class Package
   def details
     @package[:item] = @package_dimension
     calculate_package_type(@package_dimension)
-    set_unit_price(@package[:package_type])
+    unit_price(@package[:package_type])
     @package
   end
 
@@ -25,8 +25,8 @@ class Package
     end
   end
 
-  def set_unit_price(package_type)
-    case package_type 
+  def unit_price(package_type)
+    case package_type
     when 'Small'
       @package[:individual_cost] = '$3'
     when 'Medium'

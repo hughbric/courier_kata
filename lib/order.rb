@@ -23,11 +23,15 @@ class Order
     total = 0
     @order[:items].each do |package|
       price = package[:individual_cost]
-      price[0] = '' #removes '$'
+      price[0] = '' # removes '$'
       total += price.to_i
       package[:individual_cost] = "$#{price}"
     end
 
+    shipping_costs(total)
+  end
+
+  def shipping_costs(total)
     if @speedy_shipping == true
       double_total = total * 2
       @order[:speedy_shipping] = "$#{total}"
