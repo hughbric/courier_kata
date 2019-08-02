@@ -4,6 +4,8 @@ class Order
   end
 
   def add(package_dimension)
+    raise ArgumentError, 'Incorrect input type' unless package_dimension.is_a? Integer
+
     package = Package.new(package_dimension)
     @order[:items] << package.details
   end
