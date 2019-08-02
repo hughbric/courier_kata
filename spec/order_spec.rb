@@ -28,5 +28,10 @@ describe Order do
       subject.add(80)
       expect(subject.print_order).to eq({ items: [{ item: 80, package_type: 'Large', individual_cost: '$15' }], total_cost: '$15' })
     end
+
+    it 'adds XL package' do
+      subject.add(120)
+      expect(subject.print_order).to eq({ items: [{ item: 120, package_type: 'XL', individual_cost: '$25' }], total_cost: '$25' })
+    end
   end
 end
