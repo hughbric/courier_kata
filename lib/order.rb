@@ -4,14 +4,13 @@ class Order
   attr_writer :speedy_shipping
 
   def initialize
-    @order = { items: [], total_cost: '$0' }
+    @order = { items: [], total_cost: 0 }
   end
 
-  def add(package_dimension)
-    raise ArgumentError, 'Incorrect input type' unless package_dimension.is_a? Integer
+  def add(package)
+    raise ArgumentError, 'Please input a package' unless package.is_a? Package
 
-    package = Package.new(package_dimension)
-    @order[:items] << package.details
+    @order[:items] << package
   end
 
   def print_order
@@ -24,10 +23,7 @@ class Order
   def calculate_total_cost
     total = 0
     @order[:items].each do |package|
-      price = package[:individual_cost]
-      price[0] = '' # removes '$'
-      total += price.to_i
-      package[:individual_cost] = "$#{price}"
+      total += package.unit_price
     end
 
     shipping_costs(total)

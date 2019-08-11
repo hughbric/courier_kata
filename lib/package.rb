@@ -1,40 +1,26 @@
 class Package
+  attr_reader :package_type, :unit_price
+
   def initialize(package_dimension)
     @package_dimension = package_dimension
-    @package = {}
-  end
-
-  def details
-    @package[:item] = @package_dimension
-    calculate_package_type(@package_dimension)
-    unit_price(@package[:package_type])
-    @package
+    set_package_attributes
   end
 
   private
 
-  def calculate_package_type(package_dimension)
-    if package_dimension < 10
-      @package[:package_type] = 'Small'
-    elsif package_dimension < 50
-      @package[:package_type] = 'Medium'
-    elsif package_dimension < 100
-      @package[:package_type] = 'Large'
-    elsif package_dimension >= 100
-      @package[:package_type] = 'XL'
-    end
-  end
-
-  def unit_price(package_type)
-    case package_type
-    when 'Small'
-      @package[:individual_cost] = '$3'
-    when 'Medium'
-      @package[:individual_cost] = '$8'
-    when 'Large'
-      @package[:individual_cost] = '$15'
-    when 'XL'
-      @package[:individual_cost] = '$25'
+  def set_package_attributes
+    if @package_dimension < 10
+      @package_type = 'Small'
+      @unit_price = 3
+    elsif @package_dimension < 50
+      @package_type = 'Medium'
+      @unit_price = 8
+    elsif @package_dimension < 100
+      @package_type = 'Large'
+      @unit_price = 15
+    elsif @package_dimension >= 100
+      @package_type = 'XL'
+      @unit_price = 25
     end
   end
 end
